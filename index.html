@@ -319,8 +319,31 @@ body {
     padding: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     width: 280px;
-    max-height: 65vh;
+    max-height: 55vh;
+    min-height: 200px;
     overflow-y: auto;
+    /* 确保滚动条可见 */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-surface);
+}
+
+/* 自定义滚动条样式 */
+.theme-selector-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.theme-selector-container::-webkit-scrollbar-track {
+    background: var(--color-surface);
+    border-radius: 3px;
+}
+
+.theme-selector-container::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+}
+
+.theme-selector-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
 }
 
 .theme-selector-header {
@@ -336,8 +359,8 @@ body {
 .theme-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 6px;
+    margin-bottom: 10px;
     --color-success: #10b981;
     --color-warning: #f59e0b;
     --color-error: #ef4444;
@@ -345,9 +368,9 @@ body {
 }
 
 .theme-card {
-    border: 2px solid transparent;
-    border-radius: 6px;
-    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
     background: var(--color-surface);
@@ -369,21 +392,22 @@ body {
 
 .theme-color-preview {
     display: flex;
-    gap: 3px;
-    margin-bottom: 6px;
+    gap: 2px;
+    margin-bottom: 4px;
 }
 
 .color-dot {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
 }
 
 .theme-name {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: 1px;
+    line-height: 1.1;
     --color-success: #10b981;
     --color-warning: #f59e0b;
     --color-error: #ef4444;
@@ -391,9 +415,9 @@ body {
 }
 
 .theme-desc {
-    font-size: 9px;
+    font-size: 8px;
     color: var(--color-text-secondary);
-    line-height: 1.2;
+    line-height: 1.1;
     --color-success: #10b981;
     --color-warning: #f59e0b;
     --color-error: #ef4444;
