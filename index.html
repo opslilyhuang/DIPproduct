@@ -937,23 +937,80 @@ body {
 
 /* Palantir2风格 - 更接近真实Palantir官网（用户要求的第8种风格） */
 .theme-palantir2 {
-    --color-primary: #000000; /* 黑色 */
-    --color-secondary: #1a1a1a; /* 深灰 */
-    --color-accent: #333333; /* 中灰 */
-    --color-background: #f8f9fa; /* 浅灰白 */
-    --color-surface: #ffffff;
-    --color-text-primary: #000000;
-    --color-text-secondary: #666666;
-    --color-border: #e0e0e0;
-    --color-gradient: linear-gradient(135deg, #000000 0%, #333333 100%);
+    /* 色彩系统 - 遵循Palantir官网黑白灰风格 */
+    --color-primary: #000000;           /* 纯黑 */
+    --color-secondary: #1a1a1a;         /* 深灰黑 */
+    --color-accent: #666666;            /* 中灰（极少使用） */
+    --color-background: #ffffff;        /* 纯白背景（官网多用白底） */
+    --color-surface: #f8f9fa;           /* 浅灰卡片背景 */
+    --color-text-primary: #000000;      /* 纯黑标题 */
+    --color-text-secondary: #666666;    /* 中灰正文 */
+    --color-text-tertiary: #999999;     /* 浅灰辅助文字 */
+    --color-border: #e5e7eb;            /* 极浅灰边框 */
+    --color-gradient: none;             /* 移除所有渐变 */
     --color-success: #00a86b;
     --color-warning: #ff9500;
     --color-error: #ff3b30;
+    
+    /* 圆角系统 - 官网使用极小圆角（近乎直角） */
+    --radius-sm: 0.125rem;  /* 2px */
+    --radius-md: 0.25rem;   /* 4px */
+    --radius-lg: 0.375rem;  /* 6px */
+    --radius-xl: 0.5rem;    /* 8px */
+    
+    /* 阴影系统 - 极轻微，近乎无影 */
+    --shadow-sm: 0 1px 1px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    /* 字体系统 - 官网用较小字号，较高信息密度 */
+    --font-size-xs: 0.75rem;    /* 12px - 辅助文字 */
+    --font-size-sm: 0.875rem;   /* 14px - 正文 */
+    --font-size-base: 1rem;     /* 16px - 次要标题 */
+    --font-size-lg: 1.125rem;   /* 18px - 主要标题 */
+    --font-size-xl: 1.25rem;    /* 20px - 大标题 */
+    --font-size-2xl: 1.5rem;    /* 24px - 超大标题 */
+    
+    /* 图标系统 - 极简线条 */
+    --icon-stroke-width: 1.2px;
+    --icon-linecap: square;     /* 方形端点，更技术感 */
+    --icon-linejoin: miter;     /* 尖角连接 */
+    --icon-color: #666666;      /* 图标统一灰色 */
 }
 
-/* 确保Palantir2使用适当的图标样式 */
+/* palantir2主题下的图标优化 */
 .theme-palantir2 [data-lucide] {
-    stroke-width: 1.5px !important;
+    stroke-width: var(--icon-stroke-width, 1.2px) !important;
+    stroke-linecap: var(--icon-linecap, square) !important;
+    stroke-linejoin: var(--icon-linejoin, miter) !important;
+    stroke: var(--icon-color, #666666) !important;
+}
+
+/* 移除palantir2主题下的所有渐变背景 */
+.theme-palantir2 .bg-gradient-to-br,
+.theme-palantir2 .bg-gradient-to-tr,
+.theme-palantir2 .bg-gradient,
+.theme-palantir2 [class*="bg-gradient"] {
+    background-image: none !important;
+    background-color: var(--color-surface, #f8f9fa) !important;
+}
+
+/* palantir2主题下的圆角应用 */
+.theme-palantir2 .rounded,
+.theme-palantir2 .rounded-lg,
+.theme-palantir2 .rounded-xl,
+.theme-palantir2 .rounded-2xl,
+.theme-palantir2 .rounded-3xl {
+    border-radius: var(--radius-md, 0.25rem) !important;
+}
+
+/* palantir2主题下的阴影应用 */
+.theme-palantir2 .shadow,
+.theme-palantir2 .shadow-sm,
+.theme-palantir2 .shadow-md,
+.theme-palantir2 .shadow-lg,
+.theme-palantir2 .shadow-xl {
+    box-shadow: var(--shadow-sm, 0 1px 1px rgba(0, 0, 0, 0.04)) !important;
 }
 
 /* Kimi风格调整 */
@@ -1614,6 +1671,193 @@ body {
     }
 }</style>
 
+<style>
+/* 轮播组件样式 - Palantir风格 */
+
+/* 轮播容器 */
+.palantir-carousel {
+    position: relative;
+    width: 100%;
+}
+
+/* 轮播进度条 */
+.carousel-progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 2px;
+    background-color: #e5e7eb;
+    display: flex;
+    gap: 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #666666;
+    transition: width 0.3s ease;
+}
+
+.progress-time {
+    font-size: 0.75rem;
+    color: #999999;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 轮播导航 */
+.carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.nav-dots {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-dots .dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #666666;
+    font-size: 0.75rem;
+}
+
+.dot-progress {
+    width: 40px;
+    height: 2px;
+    background-color: #e5e7eb;
+    position: relative;
+    overflow: hidden;
+}
+
+.dot-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #666666;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.nav-dots .dot.active {
+    color: #000000;
+}
+
+.nav-dots .dot.active .dot-progress::after {
+    width: 100%;
+}
+
+.nav-btn {
+    background: none;
+    border: 1px solid #e5e7eb;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666666;
+}
+
+.nav-btn:hover {
+    border-color: #666666;
+    color: #000000;
+}
+
+/* 轮播控制 */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: center;
+}
+
+.control-btn {
+    background: none;
+    border: 1px solid #e5e7eb;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666666;
+}
+
+.control-btn:hover {
+    border-color: #666666;
+    color: #000000;
+}
+
+.control-timer {
+    font-size: 0.75rem;
+    color: #999999;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 轮播幻灯片 */
+.carousel-slides {
+    position: relative;
+}
+
+.carousel-slides .slide {
+    display: none;
+}
+
+.carousel-slides .slide.active {
+    display: block;
+}
+
+/* palantir2主题下的轮播样式覆盖 */
+.theme-palantir2 .carousel-progress-bar,
+.theme-palantir2 .nav-dots .dot,
+.theme-palantir2 .nav-btn,
+.theme-palantir2 .control-btn {
+    color: var(--color-text-secondary);
+}
+
+.theme-palantir2 .progress-track,
+.theme-palantir2 .dot-progress {
+    background-color: var(--color-border);
+}
+
+.theme-palantir2 .progress-fill,
+.theme-palantir2 .nav-dots .dot.active .dot-progress::after {
+    background-color: var(--color-text-primary);
+}
+
+.theme-palantir2 .nav-dots .dot.active {
+    color: var(--color-text-primary);
+}
+
+.theme-palantir2 .nav-btn,
+.theme-palantir2 .control-btn {
+    border-color: var(--color-border);
+}
+
+.theme-palantir2 .nav-btn:hover,
+.theme-palantir2 .control-btn:hover {
+    border-color: var(--color-text-secondary);
+    color: var(--color-text-primary);
+}
+</style>
 
 <!-- 
 图标设计系统说明：
@@ -1990,57 +2234,121 @@ v2主题说明：
                     <div class="xl:col-span-5 space-y-3 sm:space-y-4 relative order-1 xl:order-2">
                         <div class="absolute left-6 top-8 bottom-8 w-px bg-slate-200 -z-10 hidden sm:block"></div>
 
-                        <!-- Step 1 -->
-                        <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-slate-50 border border-slate-200 shadow-md relative group active" data-target="data_pipeline">
-                            <div class="flex gap-4">
-                                <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-blue-200 bg-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600 transition-colors duration-300">
-                                    <i data-lucide="filter" class="w-5 h-5"></i>
+                        <!-- Palantir风格轮播组件 -->
+                        <div class="palantir-carousel" data-autoplay="true" data-interval="5000">
+                            <!-- 轮播进度条 -->
+                            <div class="carousel-progress-bar">
+                                <div class="progress-track">
+                                    <div class="progress-fill" data-slide="0" style="width: 25%"></div>
+                                    <div class="progress-fill" data-slide="1" style="width: 0%"></div>
+                                    <div class="progress-fill" data-slide="2" style="width: 0%"></div>
+                                    <div class="progress-fill" data-slide="3" style="width: 0%"></div>
                                 </div>
-                                <div>
-                                    <h3 class="title-text text-base sm:text-lg font-bold text-blue-600 mb-1 sm:mb-2 transition-colors duration-300">全域数据接入与清洗编排</h3>
-                                    <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">连接异构数据源，可视化配置转换与 AI 解析节点，将复杂原始数据洗练为标准业务资产。</p>
-                                </div>
+                                <div class="progress-time">5s</div>
                             </div>
-                        </button>
 
-                        <!-- Step 2 -->
-                        <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-white border border-transparent hover:border-slate-200 hover:shadow-md relative group" data-target="ontology">
-                            <div class="flex gap-4">
-                                <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm text-slate-400 transition-colors duration-300">
-                                    <i data-lucide="box" class="w-5 h-5"></i>
+                            <!-- 轮播幻灯片 -->
+                            <div class="carousel-slides">
+                                <!-- Slide 1 -->
+                                <div class="slide active" id="data_pipeline">
+                                    <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-slate-50 border border-slate-200 shadow-md relative group" data-target="data_pipeline">
+                                        <div class="flex gap-4">
+                                            <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-blue-200 bg-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600 transition-colors duration-300">
+                                                <i data-lucide="filter" class="w-5 h-5"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="title-text text-base sm:text-lg font-bold text-blue-600 mb-1 sm:mb-2 transition-colors duration-300">全域数据接入与清洗编排</h3>
+                                                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">连接异构数据源，可视化配置转换与 AI 解析节点，将复杂原始数据洗练为标准业务资产。</p>
+                                            </div>
+                                        </div>
+                                    </button>
                                 </div>
-                                <div>
-                                    <h3 class="title-text text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2 transition-colors duration-300">自动化识别与本体建模</h3>
-                                    <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">智能识别数据特征，自动推荐标识与数据类型，极简操作即可完成业务对象实例化，构建企业知识中枢。</p>
-                                </div>
-                            </div>
-                        </button>
 
-                        <!-- Step 3 -->
-                        <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-white border border-transparent hover:border-slate-200 hover:shadow-md relative group" data-target="exploration">
-                            <div class="flex gap-4">
-                                <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm text-slate-400 transition-colors duration-300">
-                                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                                <!-- Slide 2 -->
+                                <div class="slide" id="ontology">
+                                    <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-white border border-transparent hover:border-slate-200 hover:shadow-md relative group" data-target="ontology">
+                                        <div class="flex gap-4">
+                                            <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm text-slate-400 transition-colors duration-300">
+                                                <i data-lucide="box" class="w-5 h-5"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="title-text text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2 transition-colors duration-300">自动化识别与本体建模</h3>
+                                                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">智能识别数据特征，自动推荐标识与数据类型，极简操作即可完成业务对象实例化，构建企业知识中枢。</p>
+                                            </div>
+                                        </div>
+                                    </button>
                                 </div>
-                                <div>
-                                    <h3 class="title-text text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2 transition-colors duration-300">穿透式对象关联与下钻</h3>
-                                    <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">动态配置多对象间关联规则，在关系网络视图中支持双击下钻，实现多层级链路的穿透查询。</p>
-                                </div>
-                            </div>
-                        </button>
 
-                        <!-- Step 4 -->
-                        <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-white border border-transparent hover:border-slate-200 hover:shadow-md relative group" data-target="action">
-                            <div class="flex gap-4">
-                                <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm text-slate-400 transition-colors duration-300">
-                                    <i data-lucide="zap" class="w-5 h-5"></i>
+                                <!-- Slide 3 -->
+                                <div class="slide" id="exploration">
+                                    <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-white border border-transparent hover:border-slate-200 hover:shadow-md relative group" data-target="exploration">
+                                        <div class="flex gap-4">
+                                            <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm text-slate-400 transition-colors duration-300">
+                                                <i data-lucide="share-2" class="w-5 h-5"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="title-text text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2 transition-colors duration-300">穿透式对象关联与下钻</h3>
+                                                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">动态配置多对象间关联规则，在关系网络视图中支持双击下钻，实现多层级链路的穿透查询。</p>
+                                            </div>
+                                        </div>
+                                    </button>
                                 </div>
-                                <div>
-                                    <h3 class="title-text text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2 transition-colors duration-300">智能规则联动与行动执行</h3>
-                                    <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">在本体层面定义可执行动作与业务联动规则。例如调整状态时自动触发内部协同或流转，实现真闭环。</p>
+
+                                <!-- Slide 4 -->
+                                <div class="slide" id="action">
+                                    <button class="workflow-btn w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl transition-all duration-300 bg-white border border-transparent hover:border-slate-200 hover:shadow-md relative group" data-target="action">
+                                        <div class="flex gap-4">
+                                            <div class="icon-container w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm text-slate-400 transition-colors duration-300">
+                                                <i data-lucide="zap" class="w-5 h-5"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="title-text text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2 transition-colors duration-300">智能规则联动与行动执行</h3>
+                                                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">在本体层面定义可执行动作与业务联动规则。例如调整状态时自动触发内部协同或流转，实现真闭环。</p>
+                                            </div>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
-                        </button>
+
+                            <!-- 轮播导航 -->
+                            <div class="carousel-nav">
+                                <button class="nav-btn prev" aria-label="上一个">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                
+                                <!-- 指示点（每个点带时间进度） -->
+                                <div class="nav-dots">
+                                    <button class="dot active" data-slide="0" data-title="数据编排">
+                                        <div class="dot-progress"></div>
+                                        <span>数据编排</span>
+                                    </button>
+                                    <button class="dot" data-slide="1" data-title="本体建模">
+                                        <div class="dot-progress"></div>
+                                        <span>本体建模</span>
+                                    </button>
+                                    <button class="dot" data-slide="2" data-title="对象探索">
+                                        <div class="dot-progress"></div>
+                                        <span>对象探索</span>
+                                    </button>
+                                    <button class="dot" data-slide="3" data-title="动作触发">
+                                        <div class="dot-progress"></div>
+                                        <span>动作触发</span>
+                                    </button>
+                                </div>
+                                
+                                <button class="nav-btn next" aria-label="下一个">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- 轮播控制 -->
+                            <div class="carousel-controls">
+                                <button class="control-btn pause" aria-label="暂停轮播">
+                                    <i data-lucide="pause" class="w-3 h-3"></i>
+                                </button>
+                                <div class="control-timer">00:05</div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Code Mockup Panel -->
@@ -2867,6 +3175,202 @@ function debugApplyTheme(themeName) {
         console.log("body类:", document.body.className);
     }, 100);
 }
+
+// Palantir风格轮播功能
+function initPalantirCarousel() {
+    const carousel = document.querySelector('.palantir-carousel');
+    if (!carousel) return;
+    
+    const slides = carousel.querySelectorAll('.slide');
+    const dots = carousel.querySelectorAll('.nav-dots .dot');
+    const progressFills = carousel.querySelectorAll('.progress-fill');
+    const prevBtn = carousel.querySelector('.nav-btn.prev');
+    const nextBtn = carousel.querySelector('.nav-btn.next');
+    const pauseBtn = carousel.querySelector('.control-btn.pause');
+    const progressTime = carousel.querySelector('.progress-time');
+    const controlTimer = carousel.querySelector('.control-timer');
+    
+    let currentSlide = 0;
+    let interval = 5000; // 5秒
+    let timer = null;
+    let isPaused = false;
+    let startTime = Date.now();
+    let remainingTime = interval;
+    
+    // 更新进度条
+    function updateProgress() {
+        // 重置所有进度
+        progressFills.forEach(fill => {
+            fill.style.width = '0%';
+        });
+        
+        // 设置当前进度
+        if (progressFills[currentSlide]) {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min((elapsed / interval) * 100, 100);
+            progressFills[currentSlide].style.width = progress + '%';
+        }
+        
+        // 更新时间显示
+        if (progressTime && controlTimer) {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, interval - elapsed);
+            const seconds = Math.floor(remaining / 1000);
+            progressTime.textContent = seconds + 's';
+            controlTimer.textContent = '00:' + (seconds < 10 ? '0' + seconds : seconds);
+        }
+    }
+    
+    // 更新点状进度指示器
+    function updateDotProgress() {
+        dots.forEach((dot, index) => {
+            const dotProgress = dot.querySelector('.dot-progress');
+            if (dotProgress) {
+                const after = dotProgress.querySelector('::after') || dotProgress;
+                if (index === currentSlide) {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min((elapsed / interval) * 100, 100);
+                    after.style.width = progress + '%';
+                } else if (index < currentSlide) {
+                    after.style.width = '100%';
+                } else {
+                    after.style.width = '0%';
+                }
+            }
+        });
+    }
+    
+    // 切换到指定幻灯片
+    function goToSlide(index) {
+        if (index < 0 || index >= slides.length) return;
+        
+        // 隐藏当前幻灯片
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        // 显示新幻灯片
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        
+        // 重置计时器
+        startTime = Date.now();
+        remainingTime = interval;
+        
+        // 更新进度显示
+        updateProgress();
+        updateDotProgress();
+        
+        // 触发工作流程按钮点击（更新右侧代码面板）
+        const slideBtn = slides[currentSlide].querySelector('.workflow-btn');
+        if (slideBtn) {
+            slideBtn.click();
+        }
+    }
+    
+    // 下一张幻灯片
+    function nextSlide() {
+        goToSlide((currentSlide + 1) % slides.length);
+    }
+    
+    // 开始自动播放
+    function startAutoPlay() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => {
+            if (!isPaused) {
+                nextSlide();
+            }
+        }, interval);
+        startTime = Date.now();
+        updateProgress();
+        updateDotProgress();
+    }
+    
+    // 暂停/恢复自动播放
+    function togglePause() {
+        isPaused = !isPaused;
+        if (isPaused) {
+            clearInterval(timer);
+            timer = null;
+            if (pauseBtn) {
+                pauseBtn.innerHTML = '<i data-lucide="play" class="w-3 h-3"></i>';
+                pauseBtn.setAttribute('aria-label', '继续轮播');
+            }
+        } else {
+            startAutoPlay();
+            if (pauseBtn) {
+                pauseBtn.innerHTML = '<i data-lucide="pause" class="w-3 h-3"></i>';
+                pauseBtn.setAttribute('aria-label', '暂停轮播');
+            }
+        }
+    }
+    
+    // 初始化事件监听器
+    function initEventListeners() {
+        // 导航点点击
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToSlide(index));
+        });
+        
+        // 上一张/下一张按钮
+        if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+        
+        // 暂停按钮
+        if (pauseBtn) pauseBtn.addEventListener('click', togglePause);
+        
+        // 鼠标悬停暂停
+        carousel.addEventListener('mouseenter', () => {
+            if (!isPaused) {
+                clearInterval(timer);
+                timer = null;
+            }
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            if (!isPaused && !timer) {
+                startAutoPlay();
+            }
+        });
+        
+        // 工作流程按钮点击（防止事件冒泡）
+        slides.forEach(slide => {
+            const btn = slide.querySelector('.workflow-btn');
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const target = btn.dataset.target;
+                    // 这里可以添加其他处理逻辑
+                });
+            }
+        });
+    }
+    
+    // 初始化
+    function init() {
+        // 设置初始状态
+        goToSlide(0);
+        initEventListeners();
+        startAutoPlay();
+        
+        // 更新Lucide图标
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        
+        console.log('Palantir轮播初始化完成，共', slides.length, '个幻灯片');
+    }
+    
+    // 启动初始化
+    init();
+}
+
+// 初始化轮播
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        initPalantirCarousel();
+    }, 1000); // 等待其他元素初始化完成
+});
 
 // 重写主题卡片点击事件
 document.addEventListener('DOMContentLoaded', function() {
