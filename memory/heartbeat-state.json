@@ -1,14 +1,14 @@
 {
   "lastChecks": {
-    "system_health": 1772974679,
+    "system_health": 1772976745,
     "email": null,
     "calendar": null,
-    "weather": null,
+    "weather": 1772976745,
     "github": null,
-    "memory_maintenance": null,
-    "proactive_work": null
+    "memory_maintenance": 1772976745,
+    "proactive_work": 1772976745
   },
-  "lastHeartbeat": 1772974679,
+  "lastHeartbeat": 1772976745,
   "quietHours": {
     "enabled": true,
     "start": "23:00",
