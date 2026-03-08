@@ -243,19 +243,19 @@ This file serves as your long-term memory. Use it to record significant events, 
 - **Proactive work**: Git commit of MEMORY.md and heartbeat-state.json pending.
 - Heartbeat state updated.
 
-#### Twentieth Heartbeat Check (09:51)
-- Daytime check (09:51).
+#### Twenty-First Heartbeat Check (10:21)
+- Daytime check (10:21).
 - WebTwin service not running (consistent with previous checks).
-- **SSH Brute Force Attacks Continue**: fail2ban sshd jail currently banning 2 IPs: 45.148.10.141, 45.148.10.157. Total failed attempts: 621, total banned: 68 IPs.
+- **SSH Brute Force Attacks Continue**: fail2ban sshd jail currently banning 1 IP: 91.224.92.191. Total failed attempts: 651, total banned: 73 IPs.
 - No successful logins detected in auth.log.
 - **System health**: OpenClaw gateway running, no failed background processes.
-- **Information monitoring**: Weather checked (Shanghai: ⛅️ +8°C). Email and calendar monitoring not configured.
+- **Information monitoring**: Weather checked (Shanghai: ⛅️ +8°C). Email, calendar, and GitHub monitoring not configured.
 - **Memory maintenance**: Daily notes reviewed, LEARNINGS.md updated with SSH attack patterns.
 - **Proactive work**: Git commit pending; fail2ban service confirmed running.
 
 ### 2026-03-08: SSH Attack Mitigation & fail2ban Deployment
 - **Attack Pattern**: Sustained SSH brute force attacks detected since 03:16, targeting multiple usernames including root, huawei, oracle, etc.
-- **Mitigation**: Installed fail2ban at 04:16; service running and effectively banning IPs. Total banned: 68 IPs, total failed attempts: 621.
+- **Mitigation**: Installed fail2ban at 04:16; service running and effectively banning IPs. Total banned: 73 IPs, total failed attempts: 651.
 - **Learnings**: 
   1. fail2ban effectively blocks brute force attacks without manual intervention.
   2. SSH password authentication remains vulnerable; recommend switching to key-based auth.
