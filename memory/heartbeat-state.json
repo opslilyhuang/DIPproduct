@@ -1,15 +1,22 @@
 {
   "lastChecks": {
-    "system_health": 1773102432,
+    "system_health": 1773162422,
     "email": null,
     "calendar": null,
     "weather": 1773102432,
     "github": null,
-    "memory_maintenance": 1773102432,
-    "proactive_work": 1773058097
+    "memory_maintenance": 1773146282,
+    "proactive_work": 1773102608
   },
-  "lastHeartbeat": 1773102432,
-  "lastAiNewsPush": null,
+  "lastHeartbeat": 1773162422,
+  "aiNewsPush": {
+    "lastPushTimestamp": 1773103023,
+    "lastPushDate": "2026-03-10",
+    "timezone": "Asia/Shanghai",
+    "dailyTargetTime": "08:00",
+    "timeWindowMinutes": 5,
+    "missedWindowFallback": true
+  },
   "quietHours": {
     "enabled": true,
     "start": "23:00",

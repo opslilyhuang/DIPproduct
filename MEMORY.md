@@ -913,9 +913,39 @@ This file serves as your long-term memory. Use it to record significant events, 
 - **Memory maintenance**: Daily notes reviewed, MEMORY.md updated.
 - **Proactive work**: Git commit pending; fail2ban service confirmed running.
 
+#### Ninetieth Heartbeat Check (19:00)
+- Daytime check (19:00, within 08:00-20:00 daytime period).
+- WebTwin service not running (consistent with previous checks).
+- **SSH Brute Force Attacks Continue**: fail2ban sshd jail currently banning 7 IPs: 144.31.74.68, 139.162.183.76, 165.22.125.112, 45.148.10.147, 51.83.71.110, 2.57.121.25, 180.103.119.98. Total failed attempts: 6669, total banned: 973 IPs.
+- No successful logins detected in auth.log.
+- **System health**: OpenClaw gateway running, no failed background processes. System load normal (load average: 0.00, 0.04, 0.01).
+- **Information monitoring**: Weather check timed out (network). Email, calendar, and GitHub monitoring not configured.
+- **Memory maintenance**: Daily notes reviewed, MEMORY.md updated.
+- **Proactive work**: Git commit pending; fail2ban service confirmed running.
+
+#### Ninety-First Heartbeat Check (19:30)
+- Daytime check (19:30, within 08:00-20:00 daytime period).
+- WebTwin service not running (consistent with previous checks).
+- **SSH Brute Force Attacks Continue**: fail2ban sshd jail currently banning 2 IPs: 45.148.10.152, 93.123.109.176. Total failed attempts: 6727, total banned: 983 IPs.
+- No successful logins detected in auth.log.
+- **System health**: OpenClaw gateway running, no failed background processes. System load normal (load average: 0.18, 0.16, 0.06).
+- **Information monitoring**: Weather not checked (daytime). Email, calendar, and GitHub monitoring not configured.
+- **Memory maintenance**: Daily notes reviewed, MEMORY.md updated.
+- **Proactive work**: Git commit pending; fail2ban service confirmed running.
+
+#### Ninety-Second Heartbeat Check (01:00)
+- Nighttime check (01:00, within 23:00-08:00 nighttime period).
+- WebTwin service not running (consistent with previous checks).
+- **SSH Brute Force Attacks Continue**: fail2ban sshd jail currently banning 1 IP: 139.59.247.46. Total failed attempts: 7303, total banned: 1075 IPs.
+- No successful logins detected in auth.log.
+- **System health**: OpenClaw gateway running, no failed background processes. System load normal (load average: 0.08, 0.08, 0.03).
+- **Information monitoring**: Weather not checked (nighttime). Email, calendar, and GitHub monitoring not configured.
+- **Memory maintenance**: Daily notes reviewed, MEMORY.md updated.
+- **Proactive work**: Git commit pending; fail2ban service confirmed running.
+
 ### 2026-03-08: SSH Attack Mitigation & fail2ban Deployment
 - **Attack Pattern**: Sustained SSH brute force attacks detected since 03:16, targeting multiple usernames including root, huawei, oracle, etc.
-- **Mitigation**: Installed fail2ban at 04:16; service running and effectively banning IPs. Total banned: 792 IPs, total failed attempts: 5504.
+- **Mitigation**: Installed fail2ban at 04:16; service running and effectively banning IPs. Total banned: 1075 IPs, total failed attempts: 7303.
 - **Learnings**: 
   1. fail2ban effectively blocks brute force attacks without manual intervention.
   2. SSH password authentication remains vulnerable; recommend switching to key-based auth.
@@ -1026,4 +1056,51 @@ This file serves as your long-term memory. Use it to record significant events, 
 
 ---
 
-*Last updated: 2026-03-09*
+### 2026-03-10: AI新闻推送自动化配置
+
+**时间**：08:32-08:55 (用户：仙女小麻瓜)
+
+**核心需求**：
+- 用户要求每天早上8点准时收到AI新鲜事推送
+- 之前的推送依赖心跳机制，可能错过08:00时间窗口
+- 需要可靠、准时的自动化推送方案
+
+**实施解决方案**：
+1. **优化心跳机制**：
+   - 修改 `HEARTBEAT.md`：加强08:00检查逻辑（07:55-08:05窗口）
+   - 添加日期检查：避免同一天重复推送
+   - 错过窗口处理：>08:05且未推送则立即补发
+2. **状态管理升级**：
+   - 更新 `heartbeat-state.json`：添加结构化 `aiNewsPush` 配置
+   - 记录推送日期（不仅仅是时间戳）
+   - 包含时区（Asia/Shanghai）、目标时间（08:00）、容错窗口（5分钟）
+3. **备用方案准备**：
+   - 如果心跳方案不够可靠，准备系统cron + 网关API方案
+   - 已确认系统crontab可用，但需要研究OpenClaw网关API
+
+**今日执行**：
+- 08:45：手动采集并推送了今天的第一份AI新鲜事（10条新闻）
+- 08:50：完成所有配置变更
+- 08:55：向用户说明优化方案
+
+**技能依赖**：
+- `ai-news-zh`：中文AI科技日报自动采集与推送
+- 数据源：The Verge AI、Wired RSS、TechCrunch RSS
+- 处理流程：采集→筛选→翻译→分类→推送
+
+**验证计划**：
+- 明天早上（2026-03-11）验证优化后的心跳机制
+- 如果08:00未收到推送，用户将立即反馈
+- 根据效果决定是否需要实施方案B（系统cron）
+
+**学习要点**：
+1. 定时任务需要精确调度，心跳机制适合检查但不适合准时触发
+2. 状态管理需要同时记录日期和时间戳，避免时区混淆
+3. 用户需求明确（准时性）时，需要提供可靠的技术方案
+4. 自动化系统应该有容错机制（错过窗口补发）
+
+**状态**：配置已完成，等待明天早上验证效果。
+
+---
+
+*Last updated: 2026-03-10*
