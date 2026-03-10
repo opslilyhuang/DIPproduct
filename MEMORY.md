@@ -1113,4 +1113,20 @@ This file serves as your long-term memory. Use it to record significant events, 
 
 ---
 
-*Last updated: 2026-03-10*
+### 2026-03-11: Nighttime Heartbeat Checks & SSH Attack Milestone
+
+**Heartbeat Checks (Nighttime)**:
+- **02:00**: SSH brute force attacks continue; fail2ban sshd jail currently banning 2 IPs (180.76.97.132, 182.93.7.194). Total failed attempts: 7366, total banned: 1082 IPs.
+- **System Health**: OpenClaw gateway running, WebTwin service not running (consistent). No failed background processes. System load normal.
+
+**SSH Attack Milestone**:
+- **Over 1000 IPs banned**: fail2ban has now blocked more than 1000 unique IP addresses (1082) attempting SSH brute force attacks since March 8th.
+- **Attack Pattern**: Sustained attacks continuing through nighttime hours; fail2ban effectively mitigating without successful logins.
+
+**Learnings**:
+1. fail2ban continues to prove effective for automated SSH attack mitigation.
+2. Nighttime heartbeat checks confirm system stability despite ongoing attacks.
+
+---
+
+*Last updated: 2026-03-11*
