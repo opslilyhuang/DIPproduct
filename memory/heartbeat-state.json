@@ -1,14 +1,15 @@
 {
   "lastChecks": {
-    "system_health": 1773192399,
+    "system_health": 1773195275,
     "email": null,
     "calendar": null,
     "weather": null,
     "github": null,
     "memory_maintenance": 1773146282,
-    "proactive_work": 1773102608
+    "proactive_work": 1773102608,
+    "wechat_ip_whitelist": 1773193200
   },
-  "lastHeartbeat": 1773192399,
+  "lastHeartbeat": 1773195275,
   "aiNewsPush": {
     "lastPushTimestamp": 1773187498,
     "lastPushDate": "2026-03-11",
@@ -16,6 +17,15 @@
     "dailyTargetTime": "08:00",
     "timeWindowMinutes": 5,
     "missedWindowFallback": true
+  },
+  "wechatIPWhitelist": {
+    "verified": true,
+    "ip": "43.160.220.5",
+    "verifiedAt": 1773193200,
+    "verifiedDate": "2026-03-11",
+    "status": "active",
+    "lastTest": 1773194620,
+    "accessTokenExpires": 1773201820
   },
   "quietHours": {
     "enabled": true,
