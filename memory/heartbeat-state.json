@@ -1,6 +1,6 @@
 {
   "lastChecks": {
-    "system_health": 1773195275,
+    "system_health": 1773199630,
     "email": null,
     "calendar": null,
     "weather": null,
@@ -9,7 +9,7 @@
     "proactive_work": 1773102608,
     "wechat_ip_whitelist": 1773193200
   },
-  "lastHeartbeat": 1773195275,
+  "lastHeartbeat": 1773199630,
   "aiNewsPush": {
     "lastPushTimestamp": 1773187498,
     "lastPushDate": "2026-03-11",
@@ -33,7 +33,14 @@
     "end": "08:00"
   },
   "checkRotations": {
-    "daytime": ["email", "calendar", "weather", "github"],
-    "nighttime": ["system_health"]
+    "daytime": [
+      "email",
+      "calendar",
+      "weather",
+      "github"
+    ],
+    "nighttime": [
+      "system_health"
+    ]
   }
 }
