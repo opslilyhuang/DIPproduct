@@ -1,6 +1,6 @@
 {
   "lastChecks": {
-    "system_health": 1773276619,
+    "system_health": 1773278364,
     "email": null,
     "calendar": null,
     "weather": 1773226846,
@@ -9,7 +9,7 @@
     "proactive_work": 1773102608,
     "wechat_ip_whitelist": 1773256758
   },
-  "lastHeartbeat": 1773276619,
+  "lastHeartbeat": 1773278364,
   "aiNewsPush": {
     "lastPushTimestamp": 1773274596,
     "lastPushDate": "2026-03-12",
