@@ -1595,4 +1595,49 @@ This file serves as your long-term memory. Use it to record significant events, 
 
 ---
 
+### 2026-03-12: 用户选择Option B并配置系统cron任务
+
+**08:18 用户决策**:
+- **用户选择**: "B" (Option B - 系统cron任务)
+- **目标**: 确保明天08:00准时推送，绕过不可靠的心跳机制
+
+**实施行动**:
+1. ✅ **Cron任务添加**: 
+   - 命令: `0 8 * * * /bin/bash /root/.openclaw/workspace/ai_news_daily_workflow.sh >> /root/.openclaw/workspace/memory/ai_news_cron.log 2>&1`
+   - 时间: 每天08:00 (Asia/Shanghai)
+   - 日志: `/root/.openclaw/workspace/memory/ai_news_cron.log`
+2. ✅ **脚本验证**: `ai_news_daily_workflow.sh` 语法检查通过
+3. ✅ **HEARTBEAT.md更新**: 从主动推送改为监控模式（08:10-09:00检查cron执行状态）
+4. ✅ **状态更新**: `heartbeat-state.json` 添加cron配置和监控窗口
+
+**明日08:00预期流程**:
+1. **08:00**: 系统cron触发 `ai_news_daily_workflow.sh`
+2. **新闻采集**: 运行ai-news-zh技能采集最新AI新闻
+3. **格式转换**: 转换为公众号HTML格式（"青绿左边线"主题）
+4. **自动推送**: 推送到微信公众号"Oopsoasis"草稿箱（IP白名单已生效）
+5. **日志记录**: 执行结果写入 `ai_news_cron.log`
+6. **08:10后**: 心跳检查监控日志，确认推送成功
+
+**监控机制**:
+- **主动触发**: 系统cron（精确08:00）
+- **被动监控**: 心跳检查（08:10-09:00检查日志）
+- **失败处理**: 如果08:10后无成功记录，发出警报
+
+**技术验证**:
+1. ✅ **IP白名单持续有效**: 今天08:16推送成功证明API正常
+2. ✅ **微信公众号技能组稳定**: `wechat-article-typeset` + `mp-draft-push` 工作正常
+3. ✅ **工作流脚本可靠**: 昨天和今天两次成功验证
+4. ✅ **系统cron配置正确**: crontab已添加，语法正确
+
+**学习要点**:
+1. **精确定时需求**: 心跳机制适合条件检查，系统cron适合精确定时
+2. **分层保障**: 主动触发 + 被动监控的双重保障机制
+3. **配置即代码**: 所有配置（cron、心跳、状态）均文件化，可追溯可修复
+4. **用户信任建设**: 明确选择 + 透明实施 = 用户对自动化系统的信心
+
+**庆祝时刻** 🎉:
+用户选择了最可靠的方案（系统cron），明天开始将享受**完全自动化、准时、高质量**的AI新鲜事→公众号推送服务！
+
+---
+
 *Last updated: 2026-03-12*
