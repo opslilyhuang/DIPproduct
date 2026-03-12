@@ -1,22 +1,30 @@
 {
   "lastChecks": {
-    "system_health": 1773208496,
+    "system_health": 1773274803,
     "email": null,
     "calendar": null,
-    "weather": null,
+    "weather": 1773226846,
     "github": null,
     "memory_maintenance": 1773146282,
     "proactive_work": 1773102608,
-    "wechat_ip_whitelist": 1773208496
+    "wechat_ip_whitelist": 1773256758
   },
-  "lastHeartbeat": 1773208496,
+  "lastHeartbeat": 1773274803,
   "aiNewsPush": {
-    "lastPushTimestamp": 1773187498,
-    "lastPushDate": "2026-03-11",
+    "lastPushTimestamp": 1773274596,
+    "lastPushDate": "2026-03-12",
     "timezone": "Asia/Shanghai",
     "dailyTargetTime": "08:00",
     "timeWindowMinutes": 5,
-    "missedWindowFallback": true
+    "missedWindowFallback": true,
+    "missedToday": false,
+    "lastPushHumanTime": "08:16 (Asia/Shanghai)",
+    "lastPushMethod": "cron_system",
+    "cronEnabled": true,
+    "cronCommand": "/bin/bash /root/.openclaw/workspace/ai_news_daily_workflow.sh",
+    "cronLog": "/root/.openclaw/workspace/memory/ai_news_cron.log",
+    "lastCronExecution": 1773274596,
+    "monitoringWindow": "08:10-09:00"
   },
   "wechatIPWhitelist": {
     "verified": true,
@@ -24,7 +32,7 @@
     "verifiedAt": 1773193200,
     "verifiedDate": "2026-03-11",
     "status": "active",
-    "lastTest": 1773208496,
+    "lastTest": 1773256758,
     "accessTokenExpires": 1773209012
   },
   "quietHours": {
@@ -42,5 +50,41 @@
     "nighttime": [
       "system_health"
     ]
+  },
+  "costOptimization": {
+    "status": "in_progress",
+    "identified": "2026-03-11",
+    "measures": [
+      {
+        "id": "context_compression",
+        "name": "Enable context compression",
+        "status": "pending",
+        "notes": "Configuration 'agents.defaults.contextCompression' not recognized by OpenClaw v2026.3.2"
+      },
+      {
+        "id": "regular_context_clear",
+        "name": "Regular context clearing",
+        "status": "implemented",
+        "notes": "Added to HEARTBEAT.md section 3: '\u6bcf10\u6b21\u8bf7\u6c42\u540e\u6216\u5f53\u4e0a\u4e0b\u6587\u8d85\u8fc750k tokens\u65f6\uff0c\u53d1\u9001/clear\u6307\u4ee4'"
+      },
+      {
+        "id": "model_routing",
+        "name": "R1 \u2192 V3 model routing",
+        "status": "pending",
+        "notes": "Requires OpenClaw model override configuration for simple tasks"
+      },
+      {
+        "id": "lightweight_prompts",
+        "name": "Lightweight system prompts",
+        "status": "pending",
+        "notes": "Requires OpenClaw developer support to reduce tool definition overhead"
+      }
+    ],
+    "estimated_savings": {
+      "total_tokens": "-60%",
+      "one_time_cost": "\u00a525.79 \u2192 \u00a510.17",
+      "daily_cost": "\u00a56.86 \u2192 \u00a52.74"
+    },
+    "last_updated": 1773214157
   }
 }
