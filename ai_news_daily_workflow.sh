@@ -71,12 +71,25 @@ collect_ai_news() {
         if [ -n "$skill_script" ]; then
             log "使用ai-news-zh脚本: $skill_script"
             cd "$AI_NEWS_SKILL" || return 1
-            node "$skill_script" 2>&1 | head -100 | tee -a "$LOG_FILE"
+            # 设置NODE_PATH确保能找到模块
+            export NODE_PATH=/usr/lib/node_modules:$NODE_PATH
+            # 运行脚本，捕获输出
+            if node "$skill_script" 2>&1; then
+                log "✅ AI新闻脚本执行成功"
+            else
+                log "⚠️ AI新闻脚本执行出错，但继续流程"
+            fi
             cd - > /dev/null
             
             if [ -f "$AI_NEWS_FILE" ]; then
                 local line_count=$(wc -l < "$AI_NEWS_FILE")
-                log "✅ AI新闻采集成功: $AI_NEWS_FILE ($line_count 行)"
+                local article_count=$(grep -c "^### " "$AI_NEWS_FILE" || echo "0")
+                log "✅ AI新闻采集成功: $AI_NEWS_FILE ($line_count 行，约 $article_count 篇文章)"
+                
+                # 检查内容是否新鲜（不是示例数据）
+                if grep -q "示例\|sample\|CodeSense AI\|MedAI" "$AI_NEWS_FILE" 2>/dev/null; then
+                    log "⚠️ 检测到可能为示例数据，但文件已生成"
+                fi
                 return 0
             else
                 log "警告: ai-news-zh脚本未生成新闻文件，创建示例文件"
@@ -84,12 +97,39 @@ collect_ai_news() {
                 return 0
             fi
         else
-            log "警告: ai-news-zh技能无可执行文件，创建示例新闻"
+            log "错误: ai-news-zh技能无可执行文件，请修复技能安装"
+            log "尝试使用extract_ai_news.py备用方案"
+            # 尝试使用Python脚本作为备用
+            if [ -f "/root/.openclaw/workspace/extract_ai_news.py" ]; then
+                log "使用extract_ai_news.py备用脚本"
+                cd /root/.openclaw/workspace || return 1
+                python3 extract_ai_news.py 2>&1 | tee -a "$LOG_FILE"
+                if [ -f "/root/.openclaw/workspace/ai_news_$(date +%Y%m%d).md" ]; then
+                    cp "/root/.openclaw/workspace/ai_news_$(date +%Y%m%d).md" "$AI_NEWS_FILE"
+                    local line_count=$(wc -l < "$AI_NEWS_FILE")
+                    log "✅ 备用脚本采集成功: $AI_NEWS_FILE ($line_count 行)"
+                    return 0
+                fi
+            fi
+            log "警告: 所有备用方案失败，创建示例新闻"
             create_sample_ai_news
             return 0
         fi
     else
-        log "警告: ai-news-zh技能未安装，创建示例新闻"
+        log "错误: ai-news-zh技能目录不存在"
+        # 尝试使用extract_ai_news.py
+        if [ -f "/root/.openclaw/workspace/extract_ai_news.py" ]; then
+            log "使用extract_ai_news.py脚本"
+            cd /root/.openclaw/workspace || return 1
+            python3 extract_ai_news.py 2>&1 | tee -a "$LOG_FILE"
+            if [ -f "/root/.openclaw/workspace/ai_news_$(date +%Y%m%d).md" ]; then
+                cp "/root/.openclaw/workspace/ai_news_$(date +%Y%m%d).md" "$AI_NEWS_FILE"
+                local line_count=$(wc -l < "$AI_NEWS_FILE")
+                log "✅ Python脚本采集成功: $AI_NEWS_FILE ($line_count 行)"
+                return 0
+            fi
+        fi
+        log "警告: 所有采集方案失败，创建示例新闻"
         create_sample_ai_news
         return 0
     fi
