@@ -1638,6 +1638,96 @@ This file serves as your long-term memory. Use it to record significant events, 
 **庆祝时刻** 🎉:
 用户选择了最可靠的方案（系统cron），明天开始将享受**完全自动化、准时、高质量**的AI新鲜事→公众号推送服务！
 
+### 2026-03-13: WeChat Access Token Expiry Alert
+
+**07:18 Heartbeat Check**:
+- **Critical Issue**: WeChat API access token expired ~2 days ago (since Mar 11 14:03). May affect today's AI news push at 08:00.
+- **System Status**: OpenClaw gateway running (Node version manager warning). WebTwin service not running. SSH brute force attacks ongoing; fail2ban blocking (2 IPs currently banned, total banned: 1967). System load normal, disk 76% used, memory available 1.1Gi.
+- **AI News Push**: Cron task scheduled for 08:00 (~42 minutes). Yesterday's push succeeded at 08:16. Cron log file missing but script exists.
+- **Action Required**: Renew WeChat access token to ensure successful push. Monitor today's push result in heartbeat monitoring window (08:10-09:00).
+
+**Implications**:
+- If token not renewed, AI news push may fail silently.
+- Need to verify token renewal process and update heartbeat-state.json.
+- Consider implementing token refresh automation.
+
+### 2026-03-13: AI新闻推送成功 - 系统Cron完美运行
+
+**08:18 Heartbeat Check**:
+- **🎉 推送成功**: 系统cron任务于08:00准时执行并推送成功！
+- **草稿ID**: `PIsUQzq-_vYPADriQKNyYbcuX5fIWlR9axARo2ApWhQXVpI7bYilRJ7JBux1Lw-M`
+- **标题**: "AI新鲜事日报 - 2026年03月13日"
+- **关键发现**: WeChat access_token实际有效（之前的过期警告可能是timestamp误差或缓存机制）
+
+**推送流程验证**:
+1. ✅ **08:00**: 系统cron触发 `ai_news_daily_workflow.sh`
+2. ✅ **access_token获取**: 成功（证明之前的过期警告不准确）
+3. ✅ **封面图上传**: 成功获取media_id
+4. ✅ **草稿创建**: 成功，文章长度12047字符
+5. ✅ **日志记录**: `/root/.openclaw/workspace/memory/ai_news_cron.log` 生成成功
+6. ✅ **状态更新**: `heartbeat-state.json` 自动更新最新时间戳
+
+**系统状态**:
+- **OpenClaw网关**: 运行中（Node版本管理器警告）
+- **SSH安全**: 暴力攻击持续；fail2ban封禁5个IP，总封禁: 1986
+- **资源**: 负载正常（0.68），磁盘76%，内存1.1Gi可用
+
+**重要结论**:
+1. **系统cron方案完全可靠**: 准时08:00触发，无需依赖心跳机制
+2. **WeChat API稳定性**: access_token机制可能包含自动刷新或更长的有效期
+3. **自动化成熟度**: 已实现完全无人干预的AI新闻→公众号推送流水线
+4. **监控有效性**: 心跳检查成功捕获推送结果，验证了分层监控机制
+
+**庆祝时刻** 🎉:
+连续第二天成功推送！系统cron方案验证通过，AI新鲜事日报自动化系统进入**稳定运行阶段**。
+
+### 2026-03-13: 飞书文档知识建模任务启动
+
+**用户需求**：处理两个飞书文档内容，按Anything2Ontology Lite指南进行知识建模，构建视觉知识图谱网页应用。
+
+**文档来源**：
+1. **🚀 2026 Skills黑客松·直播精华回顾 (2月5日-6日全集)** - 包含38个真实AI编程项目案例
+2. **【风变x黄叔AI编程正式社团】-资料库(学员)** - 完整课程体系和学习资源
+
+**任务选择**：用户指定"先A再C"方案
+- **A阶段**：优化黑客松数据质量，清理无效SKU，提高分类准确性
+- **C阶段**：处理课程资料库，提取学习路径、工具指南、课程体系
+
+**已完成工作**：
+1. ✅ **初步处理黑客松文档**：创建`ontology_hackathon`目录
+2. ✅ **提取SKU**：39个事实型SKU + 39个技能型SKU = 78个知识单元
+3. ✅ **生成映射**：更新`mapping.md`，添加78个SKU映射
+4. ✅ **跨领域洞察**：在`eureka.md`中记录5个有价值的洞察：
+   - 零基础普通人的生产力爆发
+   - 专家知识的产品化转型  
+   - 从"玩具"到"工具"的价值回归
+   - 万物皆可API的数据打通
+   - 自进化系统的出现
+
+**数据质量评估**：
+- 👍 **优势**：捕获了38个真实项目的核心信息、开发者背景、痛点方案
+- ⚠️ **问题**：部分SKU解析不精确（如"上半场"、"下半场"等标题被误识别）
+- 🔧 **需要优化**：清理无效条目，提高分类准确性，完善项目细节
+
+**代表性项目示例**：
+- 🏭 环评报告自动化生成器（18年资深环评人，效率提升10倍）
+- 🍅 番茄采收AI视觉质检（10年未写代码的老程序员，农业监管智能化）
+- ⚖️ 家政合同法律风险审查（清华法学硕士/律师/宝妈，解决法律咨询痛点）
+- 📈 Stock Master股票大师（普通投资者，"人话"版投研助理）
+- 🛒 电商挂网产品监控（药企从业者，B端控价巡逻队）
+
+**下一步计划**：
+1. **A阶段优化**：改进解析算法，清理数据，重新分类，保留高质量项目
+2. **C阶段处理**：提取课程资料库，构建完整AI编程知识体系
+3. **可视化创建**：开发交互式知识图谱，展示学习路径+实战案例
+
+**承诺记录**：用户特别强调"千万不要明天我来问你的时候你就忘了" - 此任务已详细记录在`memory/2026-03-13.md`和`MEMORY.md`中，确保连续性记忆。
+
+**项目价值**：
+- **教育价值**：真实AI编程项目案例库，展示零基础到落地的完整路径
+- **实践价值**：课程体系+实战案例的结合，支持学以致用
+- **可视化价值**：知识图谱呈现学习路径与项目关系，直观导航
+
 ---
 
-*Last updated: 2026-03-12*
+*Last updated: 2026-03-13*

@@ -1,29 +1,29 @@
 {
   "lastChecks": {
-    "system_health": 1773332406,
+    "system_health": 1773363784,
     "email": null,
     "calendar": null,
     "weather": 1773226846,
     "github": null,
-    "memory_maintenance": 1773146282,
+    "memory_maintenance": 1773363784,
     "proactive_work": 1773102608,
     "wechat_ip_whitelist": 1773256758
   },
-  "lastHeartbeat": 1773332406,
+  "lastHeartbeat": 1773363784,
   "aiNewsPush": {
-    "lastPushTimestamp": 1773274596,
-    "lastPushDate": "2026-03-12",
+    "lastPushTimestamp": 1773360001,
+    "lastPushDate": "2026-03-13",
     "timezone": "Asia/Shanghai",
     "dailyTargetTime": "08:00",
     "timeWindowMinutes": 5,
     "missedWindowFallback": true,
     "missedToday": false,
-    "lastPushHumanTime": "08:16 (Asia/Shanghai)",
+    "lastPushHumanTime": "08:00 (Asia/Shanghai)",
     "lastPushMethod": "cron_system",
     "cronEnabled": true,
     "cronCommand": "/bin/bash /root/.openclaw/workspace/ai_news_daily_workflow.sh",
     "cronLog": "/root/.openclaw/workspace/memory/ai_news_cron.log",
-    "lastCronExecution": 1773274596,
+    "lastCronExecution": 1773360001,
     "monitoringWindow": "08:10-09:00"
   },
   "wechatIPWhitelist": {
