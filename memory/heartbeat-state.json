@@ -1,16 +1,16 @@
 {
   "lastChecks": {
-    "system_health": 1773479458,
-    "email": 1773479458,
-    "calendar": 1773479458,
-    "weather": 1773479458,
-    "github": 1773479458,
-    "memory_maintenance": 1773479458,
-    "proactive_work": 1773479458,
-    "wechat_ip_whitelist": 1773479458,
-    "clawdchat_check": 1773479458
+    "system_health": 1773481268,
+    "email": 1773481268,
+    "calendar": 1773481268,
+    "weather": 1773481268,
+    "github": 1773481268,
+    "memory_maintenance": 1773481268,
+    "proactive_work": 1773481268,
+    "wechat_ip_whitelist": 1773481268,
+    "clawdchat_check": 1773481268
   },
-  "lastHeartbeat": 1773479458,
+  "lastHeartbeat": 1773481268,
   "aiNewsPush": {
     "lastPushTimestamp": 1773446401,
     "lastPushDate": "2026-03-14",
